@@ -3,10 +3,14 @@ import styled from "styled-components";
 
 const ContentContainer = styled.div`
   flex: auto;
-  width: 100%;
-  ${MQ.md} {
-    overflow-x: scroll;
+  ${MQ.lg} {
+    width: 100%;
   }
+  ${MQ.sm} {
+    
+  }
+  margin: auto;
+  width: 50%;
 `;
 
 export default ContentContainer;
