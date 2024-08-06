@@ -76,19 +76,19 @@ enum ScaleType {
   CHROMATIC = "Chromatic"
 }
 
-const DiHowl = new Howl({src: ["/vocals/DI.wav"], loop: true, volume: 0});
-const DiDownHowl = new Howl({src: ["/vocals/DI_Down.wav"], loop: true, volume: 0});
-const GaHowl = new Howl({src: ["/vocals/GA.wav"], loop: true, volume: 0});
-const KeHowl = new Howl({src: ["/vocals/KE.wav"], loop: true, volume: 0});
-const KeDownHowl = new Howl({src: ["/vocals/KE_Down.wav"], loop: true, volume: 0});
-const NiHowl = new Howl({src: ["/vocals/NI.wav"], loop: true, volume: 0});
-const NiUpHowl = new Howl({src: ["/vocals/NI_Up.wav"], loop: true, volume: 0});
-const PaHowl = new Howl({src: ["/vocals/PA.wav"], loop: true, volume: 0});
-const VuHowl = new Howl({src: ["/vocals/VU.wav"], loop: true, volume: 0});
-const ZoHowl = new Howl({src: ["/vocals/ZO.wav"], loop: true, volume: 0});
-const ZoDownHowl = new Howl({src: ["/vocals/ZO_Down.wav"], loop: true, volume: 0});
-const ZoIFESHowl = new Howl({src: ["/vocals/ZO_IFES.wav"], loop: true, volume: 0});
-const ZoIFESDownHowl = new Howl({src: ["/vocals/ZO_IFES_Down.wav"], loop: true, volume: 0});
+const DiHowl = new Howl({src: ["/ison/vocals/DI.wav"], loop: true, volume: 0});
+const DiDownHowl = new Howl({src: ["/ison/vocals/DI_Down.wav"], loop: true, volume: 0});
+const GaHowl = new Howl({src: ["/ison/vocals/GA.wav"], loop: true, volume: 0});
+const KeHowl = new Howl({src: ["/ison/vocals/KE.wav"], loop: true, volume: 0});
+const KeDownHowl = new Howl({src: ["/ison/vocals/KE_Down.wav"], loop: true, volume: 0});
+const NiHowl = new Howl({src: ["/ison/vocals/NI.wav"], loop: true, volume: 0});
+const NiUpHowl = new Howl({src: ["/ison/vocals/NI_Up.wav"], loop: true, volume: 0});
+const PaHowl = new Howl({src: ["/ison/vocals/PA.wav"], loop: true, volume: 0});
+const VuHowl = new Howl({src: ["/ison/vocals/VU.wav"], loop: true, volume: 0});
+const ZoHowl = new Howl({src: ["/ison/vocals/ZO.wav"], loop: true, volume: 0});
+const ZoDownHowl = new Howl({src: ["/ison/vocals/ZO_Down.wav"], loop: true, volume: 0});
+const ZoIFESHowl = new Howl({src: ["/ison/vocals/ZO_IFES.wav"], loop: true, volume: 0});
+const ZoIFESDownHowl = new Howl({src: ["/ison/vocals/ZO_IFES_Down.wav"], loop: true, volume: 0});
 
 const TONES: Array<Ison> = [
   {byzNote: Note.Di, westernNote: Note.G, howler: DiHowl, order: 1, pitch: 1},
@@ -107,18 +107,18 @@ const TONES: Array<Ison> = [
   {byzNote: Note.GaDown, westernNote: Note.FDown, howler: ZoIFESDownHowl, order: 13, pitch: 0.75}
 ];
 
-const AHowl = new Howl({src: ["/vocals/tambura/A_drone_(Ni).m4a"], loop: true, volume: 0});
-const ASharpHowl = new Howl({src: ["/vocals/tambura/ASharp_drone.m4a"], loop: true, volume: 0});
-const BHowl = new Howl({src: ["/vocals/tambura/B_drone_(Pa).m4a"], loop: true, volume: 0});
-const CHowl = new Howl({src: ["/vocals/tambura/C_drone.m4a"], loop: true, volume: 0});
-const CSharpHowl = new Howl({src: ["/vocals/tambura/CSharp_drone_(Vou).m4a"], loop: true, volume: 0});
-const DHowl = new Howl({src: ["/vocals/tambura/D_drone_(Ga).m4a"], loop: true, volume: 0});
-const DSharpHowl = new Howl({src: ["/vocals/tambura/DSharp_drone.m4a"], loop: true, volume: 0});
-const EHowl = new Howl({src: ["/vocals/tambura/E_drone_(Di).m4a"], loop: true, volume: 0});
-const FHowl = new Howl({src: ["/vocals/tambura/F_drone.m4a"], loop: true, volume: 0});
-const FSharpHowl = new Howl({src: ["/vocals/tambura/FSharp_drone_(Ke).m4a"], loop: true, volume: 0});
-const GHowl = new Howl({src: ["/vocals/tambura/G_drone_(Zo_b).m4a"], loop: true, volume: 0});
-const GSharpHowl = new Howl({src: ["/vocals/tambura/GSharp_drone_(Zo).m4a"], loop: true, volume: 0});
+const AHowl = new Howl({src: ["/ison/vocals/tambura/A_drone_(Ni).m4a"], loop: true, volume: 0});
+const ASharpHowl = new Howl({src: ["/ison/vocals/tambura/ASharp_drone.m4a"], loop: true, volume: 0});
+const BHowl = new Howl({src: ["/ison/vocals/tambura/B_drone_(Pa).m4a"], loop: true, volume: 0});
+const CHowl = new Howl({src: ["/ison/vocals/tambura/C_drone.m4a"], loop: true, volume: 0});
+const CSharpHowl = new Howl({src: ["/ison/vocals/tambura/CSharp_drone_(Vou).m4a"], loop: true, volume: 0});
+const DHowl = new Howl({src: ["/ison/vocals/tambura/D_drone_(Ga).m4a"], loop: true, volume: 0});
+const DSharpHowl = new Howl({src: ["/ison/vocals/tambura/DSharp_drone.m4a"], loop: true, volume: 0});
+const EHowl = new Howl({src: ["/ison/vocals/tambura/E_drone_(Di).m4a"], loop: true, volume: 0});
+const FHowl = new Howl({src: ["/ison/vocals/tambura/F_drone.m4a"], loop: true, volume: 0});
+const FSharpHowl = new Howl({src: ["/ison/vocals/tambura/FSharp_drone_(Ke).m4a"], loop: true, volume: 0});
+const GHowl = new Howl({src: ["/ison/vocals/tambura/G_drone_(Zo_b).m4a"], loop: true, volume: 0});
+const GSharpHowl = new Howl({src: ["/ison/vocals/tambura/GSharp_drone_(Zo).m4a"], loop: true, volume: 0});
 
 const TAMBURA_CHROMATIC: Array<Ison> = [
   {byzNote: Note.ZoDown, westernNote: Note.G, howler: GHowl, order: 8, pitch: 1},

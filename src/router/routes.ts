@@ -1,5 +1,5 @@
 enum ROUTES {
-  HOME = "/",
+  HOME = "/ison",
 }
 
 // export interface ExampleParams {
