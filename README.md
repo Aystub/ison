@@ -1,15 +1,24 @@
-# React-TS-Skeleton
-Template repository for my typical React app setup.
+# Chip's Ison App
+Webapp that provides some options for providing backing Ison to chanters.
 
 ---
 
-## Template Uses
+## Tech Used
 - #### [TypeScript](https://www.typescriptlang.org/) 
 - #### [Styled Components](https://styled-components.com/)
 - #### [React Router DOM](https://reactrouter.com/web/guides/quick-start)
 - #### [Vite](https://vitejs.dev/)
-
+- #### [Howler JS](https://howlerjs.com/)
 ---
+
+## Demo
+https://aystub.github.io/ison/
+
+## Deploy to Github Pages
+```bash
+yarn build
+yarn deploy
+```
 
 ## Available Scripts
 
