@@ -175,7 +175,6 @@ const Home: React.FC = () => {
         tone.howler.fade(1, 0, 500);
         setTimeout(() => {
           tone.howler.stop();
-          tone.howler.unload();
           tone.loaded = false;
         }, 500);
       }
@@ -188,8 +187,10 @@ const Home: React.FC = () => {
     }
 
     if (!tone.loaded) {
-      tone.howler.load();
-      tone.loaded = true;
+      tones.forEach((tone) => {
+        tone.howler.load();
+        tone.loaded = true;
+      })
     }
 
     fadeAll();
@@ -204,8 +205,6 @@ const Home: React.FC = () => {
       tone.howler.fade(1, 0, 500);
       setTimeout(() => {
         tone.howler.stop();
-        tone.howler.unload();
-        tone.loaded = false;
       }, 500)
     }
 
@@ -220,22 +219,6 @@ const Home: React.FC = () => {
       setCurrentNote(undefined);
     }
   }
-
-  // const changePitch = (delta: number) => {
-  //   if (currentNote) {
-  //     const tone = tones.find((tone) => getNote(tone) == currentNote)!;
-  //
-  //     const rate = tone.pitch + delta + (currentGlobalPitch - 1);
-  //     tone.howler.rate(rate);
-  //
-  //     const index = tones.map((tone) => getNote(tone)).indexOf(currentNote);
-  //     const tonesCopy = tones;
-  //
-  //     tonesCopy[index] = {...tone, pitch: rate};
-  //     setTones(tonesCopy);
-  //     setCurrentPitch(rate);
-  //   }
-  // }
 
   const changeGlobalPitch = (pitch: number) => {
     setCurrentGlobalPitch(pitch);
@@ -270,16 +253,21 @@ const Home: React.FC = () => {
   }
 
   const changeToneType = (type: ToneType) => {
-    setToneType(type);
-    fadeAll();
-    setCurrentNote(undefined);
-    if (type === ToneType.VOICE) {
-      setTones(TONES.sort(OrderSort));
-    } else {
-      if (scaleType === ScaleType.BYZANTINE) {
-        setTones(TAMBURA_BYZANTINE.sort(OrderSort));
+    if (toneType !== type) {
+      setToneType(type);
+      fadeAll();
+      tones.forEach((tone) => {
+        tone.howler.unload();
+      });
+      setCurrentNote(undefined);
+      if (type === ToneType.VOICE) {
+        setTones(TONES.sort(OrderSort));
       } else {
-        setTones(TAMBURA_CHROMATIC.sort(OrderSort));
+        if (scaleType === ScaleType.BYZANTINE) {
+          setTones(TAMBURA_BYZANTINE.sort(OrderSort));
+        } else {
+          setTones(TAMBURA_CHROMATIC.sort(OrderSort));
+        }
       }
     }
   }
@@ -287,7 +275,11 @@ const Home: React.FC = () => {
   const changeScaleType = (type: ScaleType) => {
     setScaleType(type);
     fadeAll();
-    setCurrentNote(undefined)
+    setCurrentNote(undefined);
+    tones.forEach((tone) => {
+      tone.howler.unload();
+      tone.loaded = false;
+    })
     if (type === ScaleType.BYZANTINE) {
       if (toneType === ToneType.VOICE) {
         setTones(TONES.sort(OrderSort));
@@ -323,7 +315,7 @@ const Home: React.FC = () => {
         </Option>
         <Option>
           <p>Current Notation: {notationType.toString()}</p>
-          <input type="button" onClick={() => changeNotationType(NotationType.BYZANTINE)} value="Use Byzantine Notation" />
+          <input type="button" disabled={toneType === ToneType.TAMBURA} onClick={() => changeNotationType(NotationType.BYZANTINE)} value="Use Byzantine Notation" />
           <input type="button" onClick={() => changeNotationType(NotationType.WESTERN)} value="Use Western Notation" />
         </Option>
         <Option>

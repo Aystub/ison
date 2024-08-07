@@ -18,12 +18,13 @@ const Button = styled.div<Props>`
   color: white;
   font-weight: bold;
   font-size: 24px;
-  line-height: 150px;
   text-align: center;
   background-color: ${props => (props.selected ? 'green' : 'darkslategray')};
   &:hover {
     cursor: pointer;
   }
+  line-height: 100%;
+  align-content: center;
 `;
 
 export default Button;
