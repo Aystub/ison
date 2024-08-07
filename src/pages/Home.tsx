@@ -19,7 +19,8 @@ type Ison = {
   westernNote: Note,
   howler: Howl,
   order: number,
-  pitch: number
+  pitch: number,
+  loaded: boolean
 }
 
 enum NotationType {
@@ -76,85 +77,87 @@ enum ScaleType {
   CHROMATIC = "Chromatic"
 }
 
-const DiHowl = new Howl({src: ["/ison/vocals/DI.wav"], loop: true, volume: 0});
-const DiDownHowl = new Howl({src: ["/ison/vocals/DI_Down.wav"], loop: true, volume: 0});
-const GaHowl = new Howl({src: ["/ison/vocals/GA.wav"], loop: true, volume: 0});
-const KeHowl = new Howl({src: ["/ison/vocals/KE.wav"], loop: true, volume: 0});
-const KeDownHowl = new Howl({src: ["/ison/vocals/KE_Down.wav"], loop: true, volume: 0});
-const NiHowl = new Howl({src: ["/ison/vocals/NI.wav"], loop: true, volume: 0});
-const NiUpHowl = new Howl({src: ["/ison/vocals/NI_Up.wav"], loop: true, volume: 0});
-const PaHowl = new Howl({src: ["/ison/vocals/PA.wav"], loop: true, volume: 0});
-const VuHowl = new Howl({src: ["/ison/vocals/VU.wav"], loop: true, volume: 0});
-const ZoHowl = new Howl({src: ["/ison/vocals/ZO.wav"], loop: true, volume: 0});
-const ZoDownHowl = new Howl({src: ["/ison/vocals/ZO_Down.wav"], loop: true, volume: 0});
-const ZoIFESHowl = new Howl({src: ["/ison/vocals/ZO_IFES.wav"], loop: true, volume: 0});
-const ZoIFESDownHowl = new Howl({src: ["/ison/vocals/ZO_IFES_Down.wav"], loop: true, volume: 0});
-
-const TONES: Array<Ison> = [
-  {byzNote: Note.Di, westernNote: Note.G, howler: DiHowl, order: 1, pitch: 1},
-  {byzNote: Note.DiDown, westernNote: Note.GDown, howler: DiDownHowl, order: 9, pitch: 1},
-  {byzNote: Note.Ga, westernNote: Note.F, howler: GaHowl, order: 8, pitch: 1},
-  {byzNote: Note.Ke, westernNote: Note.A, howler: KeHowl, order: 2, pitch: 1},
-  {byzNote: Note.KeDown, westernNote: Note.ADown, howler: KeDownHowl, order: 10, pitch: 1},
-  {byzNote: Note.Ni, westernNote: Note.C, howler: NiHowl, order: 5, pitch: 1},
-  {byzNote: Note.NiUp, westernNote: Note.CUp, howler: NiUpHowl, order: 0, pitch: 1},
-  {byzNote: Note.Pa, westernNote: Note.D, howler: PaHowl, order: 6, pitch: 1},
-  {byzNote: Note.Vu, westernNote: Note.E, howler: VuHowl, order: 7, pitch: 1.05},
-  {byzNote: Note.Zo, westernNote: Note.B, howler: ZoHowl, order: 4, pitch: 1.03},
-  {byzNote: Note.ZoDown, westernNote: Note.BDown, howler: ZoDownHowl, order: 12, pitch: 1.03},
-  {byzNote: Note.ZoIFES, westernNote: Note.BFlat, howler: ZoIFESHowl, order: 3, pitch: 1},
-  {byzNote: Note.ZoIFESDown, westernNote: Note.BFlatDown, howler: ZoIFESDownHowl, order: 11, pitch: 1},
-  {byzNote: Note.GaDown, westernNote: Note.FDown, howler: ZoIFESDownHowl, order: 13, pitch: 0.75}
-];
-
-const AHowl = new Howl({src: ["/ison/vocals/tambura/A_drone_(Ni).m4a"], loop: true, volume: 0});
-const ASharpHowl = new Howl({src: ["/ison/vocals/tambura/ASharp_drone.m4a"], loop: true, volume: 0});
-const BHowl = new Howl({src: ["/ison/vocals/tambura/B_drone_(Pa).m4a"], loop: true, volume: 0});
-const CHowl = new Howl({src: ["/ison/vocals/tambura/C_drone.m4a"], loop: true, volume: 0});
-const CSharpHowl = new Howl({src: ["/ison/vocals/tambura/CSharp_drone_(Vou).m4a"], loop: true, volume: 0});
-const DHowl = new Howl({src: ["/ison/vocals/tambura/D_drone_(Ga).m4a"], loop: true, volume: 0});
-const DSharpHowl = new Howl({src: ["/ison/vocals/tambura/DSharp_drone.m4a"], loop: true, volume: 0});
-const EHowl = new Howl({src: ["/ison/vocals/tambura/E_drone_(Di).m4a"], loop: true, volume: 0});
-const FHowl = new Howl({src: ["/ison/vocals/tambura/F_drone.m4a"], loop: true, volume: 0});
-const FSharpHowl = new Howl({src: ["/ison/vocals/tambura/FSharp_drone_(Ke).m4a"], loop: true, volume: 0});
-const GHowl = new Howl({src: ["/ison/vocals/tambura/G_drone_(Zo_b).m4a"], loop: true, volume: 0});
-const GSharpHowl = new Howl({src: ["/ison/vocals/tambura/GSharp_drone_(Zo).m4a"], loop: true, volume: 0});
-
-const TAMBURA_CHROMATIC: Array<Ison> = [
-  {byzNote: Note.ZoDown, westernNote: Note.G, howler: GHowl, order: 8, pitch: 1},
-  {byzNote: Note.Zo, westernNote: Note.GSharp, howler: GSharpHowl, order: 9, pitch: 1},
-  {byzNote: Note.Ni, westernNote: Note.A, howler: AHowl, order: 10, pitch: 1},
-  {byzNote: Note.Ni, westernNote: Note.ASharp, howler: ASharpHowl, order: 11, pitch: 1},
-  {byzNote: Note.Pa, westernNote: Note.B, howler: BHowl, order: 4, pitch: 1},
-  {byzNote: Note.Ni, westernNote: Note.C, howler: CHowl, order: 5, pitch: 1},
-  {byzNote: Note.Vu, westernNote: Note.CSharp, howler: CSharpHowl, order: 6, pitch: 1},
-  {byzNote: Note.Ga, westernNote: Note.D, howler: DHowl, order: 7, pitch: 1},
-  {byzNote: Note.Ni, westernNote: Note.DSharp, howler: DSharpHowl, order: 0, pitch: 1},
-  {byzNote: Note.Di, westernNote: Note.E, howler: EHowl, order: 1, pitch: 1},
-  {byzNote: Note.Ni, westernNote: Note.F, howler: FHowl, order: 2, pitch: 1},
-  {byzNote: Note.Ke, westernNote: Note.FSharp, howler: FSharpHowl, order: 3, pitch: 1},
-]
-
-const TAMBURA_BYZANTINE: Array<Ison> = [
-  {byzNote: Note.NiUp, westernNote: Note.C, howler: CHowl, order: 0, pitch: 2.0},
-  {byzNote: Note.Di, westernNote: Note.G, howler: GHowl, order: 1, pitch: 2.0},
-  {byzNote: Note.Ke, westernNote: Note.A, howler: AHowl, order: 2, pitch: 2.0},
-  {byzNote: Note.ZoIFES, westernNote: Note.BFlat, howler: ASharpHowl, order: 3, pitch: 2.0},
-  {byzNote: Note.Zo, westernNote: Note.B, howler: BHowl, order: 4, pitch: 2.0},
-  {byzNote: Note.Ni, westernNote: Note.C, howler: CHowl, order: 5, pitch: 1},
-  {byzNote: Note.Pa, westernNote: Note.D, howler: DHowl, order: 6, pitch: 1},
-  {byzNote: Note.Vu, westernNote: Note.E, howler: EHowl, order: 7, pitch: 1},
-  {byzNote: Note.Ga, westernNote: Note.F, howler: FHowl, order: 8, pitch: 1},
-  {byzNote: Note.DiDown, westernNote: Note.GDown, howler: GHowl, order: 9, pitch: 1},
-  {byzNote: Note.KeDown, westernNote: Note.ADown, howler: AHowl, order: 10, pitch: 1},
-  {byzNote: Note.ZoIFESDown, westernNote: Note.BFlatDown, howler: ASharpHowl, order: 11, pitch: 1},
-  {byzNote: Note.ZoDown, westernNote: Note.BDown, howler: BHowl, order: 12, pitch: 1},
-  {byzNote: Note.GaDown, westernNote: Note.FDown, howler: FHowl, order: 13, pitch: .5},
-]
+console.log("INITIALIZING");
 
 const OrderSort = (a: Ison, b: Ison) => {
   return a.order - b.order;
 }
+
+const DiHowl = new Howl({src: ["/ison/vocals/DI.wav"], loop: true, volume: 0, autoplay: false, preload: false});
+const DiDownHowl = new Howl({src: ["/ison/vocals/DI_Down.wav"], loop: true, volume: 0, autoplay: false, preload: false});
+const GaHowl = new Howl({src: ["/ison/vocals/GA.wav"], loop: true, volume: 0, autoplay: false, preload: false});
+const KeHowl = new Howl({src: ["/ison/vocals/KE.wav"], loop: true, volume: 0, autoplay: false, preload: false});
+const KeDownHowl = new Howl({src: ["/ison/vocals/KE_Down.wav"], loop: true, volume: 0, autoplay: false, preload: false});
+const NiHowl = new Howl({src: ["/ison/vocals/NI.wav"], loop: true, volume: 0, autoplay: false, preload: false});
+const NiUpHowl = new Howl({src: ["/ison/vocals/NI_Up.wav"], loop: true, volume: 0, autoplay: false, preload: false});
+const PaHowl = new Howl({src: ["/ison/vocals/PA.wav"], loop: true, volume: 0, autoplay: false, preload: false});
+const VuHowl = new Howl({src: ["/ison/vocals/VU.wav"], loop: true, volume: 0, autoplay: false, preload: false});
+const ZoHowl = new Howl({src: ["/ison/vocals/ZO.wav"], loop: true, volume: 0, autoplay: false, preload: false});
+const ZoDownHowl = new Howl({src: ["/ison/vocals/ZO_Down.wav"], loop: true, volume: 0, autoplay: false, preload: false});
+const ZoIFESHowl = new Howl({src: ["/ison/vocals/ZO_IFES.wav"], loop: true, volume: 0, autoplay: false, preload: false});
+const ZoIFESDownHowl = new Howl({src: ["/ison/vocals/ZO_IFES_Down.wav"], loop: true, volume: 0, autoplay: false, preload: false});
+
+const AHowl = new Howl({src: ["/ison/vocals/tambura/A_drone_(Ni).mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const ASharpHowl = new Howl({src: ["/ison/vocals/tambura/ASharp_drone.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const BHowl = new Howl({src: ["/ison/vocals/tambura/B_drone_(Pa).mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const CHowl = new Howl({src: ["/ison/vocals/tambura/C_drone.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const CSharpHowl = new Howl({src: ["/ison/vocals/tambura/CSharp_drone_(Vou).mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const DHowl = new Howl({src: ["/ison/vocals/tambura/D_drone_(Ga).mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const DSharpHowl = new Howl({src: ["/ison/vocals/tambura/DSharp_drone.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const EHowl = new Howl({src: ["/ison/vocals/tambura/E_drone_(Di).mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const FHowl = new Howl({src: ["/ison/vocals/tambura/F_drone.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const FSharpHowl = new Howl({src: ["/ison/vocals/tambura/FSharp_drone_(Ke).mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const GHowl = new Howl({src: ["/ison/vocals/tambura/G_drone_(Zo_b).mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const GSharpHowl = new Howl({src: ["/ison/vocals/tambura/GSharp_drone_(Zo).mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+
+const TONES: Array<Ison> = [
+  {loaded: false, byzNote: Note.Di, westernNote: Note.G, howler: DiHowl, order: 1, pitch: 1},
+  {loaded: false, byzNote: Note.DiDown, westernNote: Note.GDown, howler: DiDownHowl, order: 9, pitch: 1},
+  {loaded: false, byzNote: Note.Ga, westernNote: Note.F, howler: GaHowl, order: 8, pitch: 1},
+  {loaded: false, byzNote: Note.Ke, westernNote: Note.A, howler: KeHowl, order: 2, pitch: 1},
+  {loaded: false, byzNote: Note.KeDown, westernNote: Note.ADown, howler: KeDownHowl, order: 10, pitch: 1},
+  {loaded: false, byzNote: Note.Ni, westernNote: Note.C, howler: NiHowl, order: 5, pitch: 1},
+  {loaded: false, byzNote: Note.NiUp, westernNote: Note.CUp, howler: NiUpHowl, order: 0, pitch: 1},
+  {loaded: false, byzNote: Note.Pa, westernNote: Note.D, howler: PaHowl, order: 6, pitch: 1},
+  {loaded: false, byzNote: Note.Vu, westernNote: Note.E, howler: VuHowl, order: 7, pitch: 1.05},
+  {loaded: false, byzNote: Note.Zo, westernNote: Note.B, howler: ZoHowl, order: 4, pitch: 1.03},
+  {loaded: false, byzNote: Note.ZoDown, westernNote: Note.BDown, howler: ZoDownHowl, order: 12, pitch: 1.03},
+  {loaded: false, byzNote: Note.ZoIFES, westernNote: Note.BFlat, howler: ZoIFESHowl, order: 3, pitch: 1},
+  {loaded: false, byzNote: Note.ZoIFESDown, westernNote: Note.BFlatDown, howler: ZoIFESDownHowl, order: 11, pitch: 1},
+  {loaded: false, byzNote: Note.GaDown, westernNote: Note.FDown, howler: ZoIFESDownHowl, order: 13, pitch: 0.75}
+];
+
+const TAMBURA_CHROMATIC: Array<Ison> = [
+  {loaded: false, byzNote: Note.ZoDown, westernNote: Note.G, howler: GHowl, order: 8, pitch: 1},
+  {loaded: false, byzNote: Note.Zo, westernNote: Note.GSharp, howler: GSharpHowl, order: 9, pitch: 1},
+  {loaded: false, byzNote: Note.Ni, westernNote: Note.A, howler: AHowl, order: 10, pitch: 1},
+  {loaded: false, byzNote: Note.Ni, westernNote: Note.ASharp, howler: ASharpHowl, order: 11, pitch: 1},
+  {loaded: false, byzNote: Note.Pa, westernNote: Note.B, howler: BHowl, order: 4, pitch: 1},
+  {loaded: false, byzNote: Note.Ni, westernNote: Note.C, howler: CHowl, order: 5, pitch: 1},
+  {loaded: false, byzNote: Note.Vu, westernNote: Note.CSharp, howler: CSharpHowl, order: 6, pitch: 1},
+  {loaded: false, byzNote: Note.Ga, westernNote: Note.D, howler: DHowl, order: 7, pitch: 1},
+  {loaded: false, byzNote: Note.Ni, westernNote: Note.DSharp, howler: DSharpHowl, order: 0, pitch: 1},
+  {loaded: false, byzNote: Note.Di, westernNote: Note.E, howler: EHowl, order: 1, pitch: 1},
+  {loaded: false, byzNote: Note.Ni, westernNote: Note.F, howler: FHowl, order: 2, pitch: 1},
+  {loaded: false, byzNote: Note.Ke, westernNote: Note.FSharp, howler: FSharpHowl, order: 3, pitch: 1},
+]
+
+const TAMBURA_BYZANTINE: Array<Ison> = [
+  {loaded: false, byzNote: Note.NiUp, westernNote: Note.C, howler: CHowl, order: 0, pitch: 2.0},
+  {loaded: false, byzNote: Note.Di, westernNote: Note.G, howler: GHowl, order: 1, pitch: 2.0},
+  {loaded: false, byzNote: Note.Ke, westernNote: Note.A, howler: AHowl, order: 2, pitch: 2.0},
+  {loaded: false, byzNote: Note.ZoIFES, westernNote: Note.BFlat, howler: ASharpHowl, order: 3, pitch: 2.0},
+  {loaded: false, byzNote: Note.Zo, westernNote: Note.B, howler: BHowl, order: 4, pitch: 2.0},
+  {loaded: false, byzNote: Note.Ni, westernNote: Note.C, howler: CHowl, order: 5, pitch: 1},
+  {loaded: false, byzNote: Note.Pa, westernNote: Note.D, howler: DHowl, order: 6, pitch: 1},
+  {loaded: false, byzNote: Note.Vu, westernNote: Note.E, howler: EHowl, order: 7, pitch: 1},
+  {loaded: false, byzNote: Note.Ga, westernNote: Note.F, howler: FHowl, order: 8, pitch: 1},
+  {loaded: false, byzNote: Note.DiDown, westernNote: Note.GDown, howler: GHowl, order: 9, pitch: 1},
+  {loaded: false, byzNote: Note.KeDown, westernNote: Note.ADown, howler: AHowl, order: 10, pitch: 1},
+  {loaded: false, byzNote: Note.ZoIFESDown, westernNote: Note.BFlatDown, howler: ASharpHowl, order: 11, pitch: 1},
+  {loaded: false, byzNote: Note.ZoDown, westernNote: Note.BDown, howler: BHowl, order: 12, pitch: 1},
+  {loaded: false, byzNote: Note.GaDown, westernNote: Note.FDown, howler: FHowl, order: 13, pitch: .5},
+]
 
 const Home: React.FC = () => {
   const [currentNote, setCurrentNote] = useState<Note | undefined>();
@@ -172,6 +175,8 @@ const Home: React.FC = () => {
         tone.howler.fade(1, 0, 500);
         setTimeout(() => {
           tone.howler.stop();
+          tone.howler.unload();
+          tone.loaded = false;
         }, 500);
       }
     });
@@ -180,6 +185,11 @@ const Home: React.FC = () => {
   const playIson = (tone: Ison) => {
     if (!canClick) {
       return;
+    }
+
+    if (!tone.loaded) {
+      tone.howler.load();
+      tone.loaded = true;
     }
 
     fadeAll();
@@ -194,6 +204,8 @@ const Home: React.FC = () => {
       tone.howler.fade(1, 0, 500);
       setTimeout(() => {
         tone.howler.stop();
+        tone.howler.unload();
+        tone.loaded = false;
       }, 500)
     }
 
