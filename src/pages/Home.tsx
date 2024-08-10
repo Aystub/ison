@@ -83,19 +83,19 @@ const OrderSort = (a: Ison, b: Ison) => {
   return a.order - b.order;
 }
 
-const DiHowl = new Howl({src: ["/ison/vocals/DI.wav"], loop: true, volume: 0, autoplay: false, preload: false});
-const DiDownHowl = new Howl({src: ["/ison/vocals/DI_Down.wav"], loop: true, volume: 0, autoplay: false, preload: false});
-const GaHowl = new Howl({src: ["/ison/vocals/GA.wav"], loop: true, volume: 0, autoplay: false, preload: false});
-const KeHowl = new Howl({src: ["/ison/vocals/KE.wav"], loop: true, volume: 0, autoplay: false, preload: false});
-const KeDownHowl = new Howl({src: ["/ison/vocals/KE_Down.wav"], loop: true, volume: 0, autoplay: false, preload: false});
-const NiHowl = new Howl({src: ["/ison/vocals/NI.wav"], loop: true, volume: 0, autoplay: false, preload: false});
-const NiUpHowl = new Howl({src: ["/ison/vocals/NI_Up.wav"], loop: true, volume: 0, autoplay: false, preload: false});
-const PaHowl = new Howl({src: ["/ison/vocals/PA.wav"], loop: true, volume: 0, autoplay: false, preload: false});
-const VuHowl = new Howl({src: ["/ison/vocals/VU.wav"], loop: true, volume: 0, autoplay: false, preload: false});
-const ZoHowl = new Howl({src: ["/ison/vocals/ZO.wav"], loop: true, volume: 0, autoplay: false, preload: false});
-const ZoDownHowl = new Howl({src: ["/ison/vocals/ZO_Down.wav"], loop: true, volume: 0, autoplay: false, preload: false});
-const ZoIFESHowl = new Howl({src: ["/ison/vocals/ZO_IFES.wav"], loop: true, volume: 0, autoplay: false, preload: false});
-const ZoIFESDownHowl = new Howl({src: ["/ison/vocals/ZO_IFES_Down.wav"], loop: true, volume: 0, autoplay: false, preload: false});
+const DiHowl = new Howl({src: ["/ison/vocals/DI.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const DiDownHowl = new Howl({src: ["/ison/vocals/DI_Down.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const GaHowl = new Howl({src: ["/ison/vocals/GA.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const KeHowl = new Howl({src: ["/ison/vocals/KE.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const KeDownHowl = new Howl({src: ["/ison/vocals/KE_Down.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const NiHowl = new Howl({src: ["/ison/vocals/NI.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const NiUpHowl = new Howl({src: ["/ison/vocals/NI_Up.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const PaHowl = new Howl({src: ["/ison/vocals/PA.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const VuHowl = new Howl({src: ["/ison/vocals/VU.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const ZoHowl = new Howl({src: ["/ison/vocals/ZO.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const ZoDownHowl = new Howl({src: ["/ison/vocals/ZO_Down.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const ZoIFESHowl = new Howl({src: ["/ison/vocals/ZO_IFES.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
+const ZoIFESDownHowl = new Howl({src: ["/ison/vocals/ZO_IFES_Down.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
 
 const AHowl = new Howl({src: ["/ison/vocals/tambura/A_drone_(Ni).mp3"], loop: true, volume: 0, autoplay: false, preload: false});
 const ASharpHowl = new Howl({src: ["/ison/vocals/tambura/ASharp_drone.mp3"], loop: true, volume: 0, autoplay: false, preload: false});
@@ -315,7 +315,7 @@ const Home: React.FC = () => {
         </Option>
         <Option>
           <p>Current Notation: {notationType.toString()}</p>
-          <input type="button" disabled={toneType === ToneType.TAMBURA} onClick={() => changeNotationType(NotationType.BYZANTINE)} value="Use Byzantine Notation" />
+          <input type="button" disabled={scaleType === ScaleType.CHROMATIC} onClick={() => changeNotationType(NotationType.BYZANTINE)} value="Use Byzantine Notation" />
           <input type="button" onClick={() => changeNotationType(NotationType.WESTERN)} value="Use Western Notation" />
         </Option>
         <Option>
