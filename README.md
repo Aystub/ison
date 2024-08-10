@@ -3,12 +3,10 @@ Webapp that provides some options for providing backing Ison to chanters.
 
 ---
 
-## Tech Used
-- #### [TypeScript](https://www.typescriptlang.org/) 
-- #### [Styled Components](https://styled-components.com/)
-- #### [React Router DOM](https://reactrouter.com/web/guides/quick-start)
-- #### [Vite](https://vitejs.dev/)
-- #### [Howler JS](https://howlerjs.com/)
+## Tech Stack
+- [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) + [Vite](https://vitejs.dev/)
+- [Styled Components](https://styled-components.com/)
+- [Howler JS](https://howlerjs.com/)
 ---
 
 ## Demo
